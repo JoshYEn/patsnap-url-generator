@@ -1,0 +1,1 @@
+# patsnap-url-generator
