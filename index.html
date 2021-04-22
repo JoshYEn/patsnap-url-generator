@@ -23,36 +23,12 @@
       overflow-x: hidden;
       /* Prevent scroll on narrow devices */
       /* font-family: 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif; */
+      /* background-color: #D3D3D3; */
     }
 
     .container {
       width: auto;
-      max-width: 1000px;
-    }
-
-    @media (max-width: 991.98px) {
-      .offcanvas-collapse {
-        position: fixed;
-        top: 56px;
-        /* Height of navbar */
-        bottom: 0;
-        left: 100%;
-        width: 100%;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        overflow-y: auto;
-        visibility: hidden;
-        background-color: #343a40;
-        transition: visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
-        transition: transform .3s ease-in-out, visibility .3s ease-in-out;
-        transition: transform .3s ease-in-out, visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
-      }
-
-      .offcanvas-collapse.open {
-        visibility: visible;
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-      }
+      max-width: 1100px;
     }
 
     .text-white-50 {
@@ -73,21 +49,6 @@
 
     .lh-150 {
       line-height: 1.5;
-    }
-
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
     }
   </style>
 </head>
@@ -111,13 +72,10 @@
         <form class="mb-0">
           <div class="form-row media-body mb-0 small lh-125">
             <div class="col-md">
-              <label for="all_an" class="text-center mb-1">ALL_AN</label>
-              <input type="text" class="form-control form-control" id="all_an" value="株式会社東芝">
+              <label for="all_an" class="text-center mb-1">ALL_AN (一行一个)</label>
+              <!-- <input type="text" class="form-control form-control" id="all_an" value="株式会社東芝"> -->
+              <textarea class="form-control" id="all_an" rows="4">株式会社東芝</textarea>
             </div>
-            <!-- <div class="col-md-4">
-							<label for="end-year" class="text-center">End Year</label>
-							<input type="text" class="form-control form-control-sm" id="end-year" value="2017">
-						</div> -->
           </div>
         </form>
       </div>
@@ -128,8 +86,46 @@
       <div class="col-md-6">
         <!-- TAC AND -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0"><span style="color: red;">包括</span> 标题/摘要/权利要求 （TAC）</h6>
-          <div class="row text-muted pt-2" id="tac_and">
+          <div class="row">
+            <div class="col-9">
+              <!-- <div class="row"> -->
+                <h6 class="mb-0 pt-2 me-2">标题/摘要/权利要求 (TAC) <span style="color: red;">1</span></h6>
+                <!-- <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchALL1">
+                  <h6 class="form-check-label mb-0 pt-1" for="flexSwitchALL1"><span style="color: red;">包括</span> 标题/摘要/权利要求 （TAC）</h6>
+                </div> -->
+              <!-- </div> -->
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1">
+                <label class="form-check-label" for="flexSwitchCheckDefault1">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+              <div class="btn-group" role="group" aria-label="tac1-aon" id="radio-tac1-link">
+                <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-and" value="AND" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-and">AND</label>
+                <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-or">OR</label>
+                <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="tac1-tf" id="radio-tac1">
+                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-allf" value="TAC" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-allf">TAC</label>
+                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-allt" value="TAC_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-allt">TAC_ALL</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row text-muted pt-2" id="tac1">
             <div class="col-md-6">
 
               <div class="input-group mb-3">
@@ -216,8 +212,42 @@
       <div class="col-md-6">
         <!-- NOT TAC -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0"><span style="color: red;">排除</span> 标题/摘要/权利要求 （TAC）</h6>
-          <div class="row text-muted pt-2" id="tac_not">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题/摘要/权利要求 (TAC) <span style="color: red;">2</span> </h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
+                <label class="form-check-label" for="flexSwitchCheckDefault2">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="tac2-aon" id="radio-tac2-link">
+                <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-and" value="AND" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-and">AND</label>
+                <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-or">OR</label>
+                <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="tac2-tf" id="radio-tac2">
+                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-allf" value="TAC" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-allf">TAC</label>
+                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-allt" value="TAC_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-allt">TAC_ALL</label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row text-muted pt-2" id="tac2">
             <div class="col-md-12">
 
               <div class="input-group mb-3">
@@ -267,8 +297,42 @@
       <div class="col-md-6">
         <!-- TACD AND -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0"><span style="color: red;">包括</span> 标题/摘要/权利要求/说明书 （TACD）</h6>
-          <div class="row text-muted pt-2" id="tacd_and">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题/摘要/权利要求/说明书 (TACD) <span style="color: red;">1</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault3">
+                <label class="form-check-label" for="flexSwitchCheckDefault3">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="tacd1-aon" id="radio-tacd1-link">
+                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-and" value="AND" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-and">AND</label>
+                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-or">OR</label>
+                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="tacd1-tf" id="radio-tacd1">
+                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-allf" value="TACD" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-allf">TACD</label>
+                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-allt" value="TACD_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-allt">TACD_ALL</label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row text-muted pt-2" id="tacd1">
             <div class="col-md-6">
 
               <div class="input-group mb-3">
@@ -349,15 +413,49 @@
 
             </div>
           </div>
-          <!-- <p class="small pt-2 mb-0" style="color: red;"><b>TODO:</b> This data selection is not functioning yet.</p> -->
         </div> <!-- TAC -->
       </div>
 
       <div class="col-md-6">
         <!-- NOT TACD -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0"><span style="color: red;">排除</span> 标题/摘要/权利要求/说明书 （TACD）</h6>
-          <div class="row text-muted pt-2" id="tacd_not">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题/摘要/权利要求/说明书 (TACD) <span style="color: red;">2</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault4">
+                <label class="form-check-label" for="flexSwitchCheckDefault4">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="tacd2-aon" id="radio-tacd2-link">
+                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-and" value="AND" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-and">AND</label>
+                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-or">OR</label>
+                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="tacd2-tf" id="radio-tacd2">
+                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-allf" value="TACD" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-allf">TACD</label>
+                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-allt" value="TACD_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-allt">TACD_ALL</label>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="row text-muted pt-2" id="tacd2">
             <div class="col-md-12">
 
               <div class="input-group mb-3">
@@ -411,8 +509,7 @@
 
     <div class="row justify-content-center mb-3" id="result" hidden>
       <div class="text-center col-md-12">
-        <div class="alert alert-primary mb-0 shadow-sm" role="alert">
-          <a id="link">点这里</a>
+        <div class="alert alert-primary mb-0 shadow-sm" role="alert" id="links">
         </div>
       </div>
     </div>
@@ -430,50 +527,123 @@
       var prefix = "https://analytics.zhihuiya.com/search/result/tablelist/1?sort=desc&limit=100&q=";
       var suffix = "&_type=query&redirect=%2Fsearch%2Finput%23%2Fsimple";
 
+      // if submit button is clicked
       $('#submitButton').click(function () {
-        var search = "";
-        var all_an = "ALL_AN:(" + $('#all_an').val() + ")";
 
-        // 1. TAC
-        var val_tac = [];
-        $('#tac_and').find('input[type="checkbox"]:checked').each(function () {
-          val_tac.push("(" + $(this).parent().next().val() + ")");
+        // link
+        var tac1_link = $("#radio-tac1-link input:radio:checked").val();
+        var tac2_link = $("#radio-tac2-link input:radio:checked").val();
+        var tacd1_link = $("#radio-tacd1-link input:radio:checked").val();
+        var tacd2_link = $("#radio-tacd2-link input:radio:checked").val();
+
+        // type
+        var tac1_type = $("#radio-tac1 input:radio:checked").val();
+        var tac2_type = $("#radio-tac2 input:radio:checked").val();
+        var tacd1_type = $("#radio-tacd1 input:radio:checked").val();
+        var tacd2_type = $("#radio-tacd2 input:radio:checked").val();
+
+        // 1. TAC1
+        var var_tac1 = [];
+        $('#tac1').find('input[type="checkbox"]:checked').each(function () {
+          var_tac1.push("(" + $(this).parent().next().val() + ")");
         });
-        if (val_tac.length !== 0) {
-          val_tac = "TAC:( " + val_tac.join(' AND ') + " )";
+        if (var_tac1.length !== 0) { // if selected
+          var_tac1 = " " + tac1_link + " " + tac1_type + ":( " + var_tac1.join(' OR ') + " )";
+        } else {
+          var_tac1 = "";
         }
-        // 2. TAC NOT
-        var var_tacNot = [];
-        $('#tac_not').find('input[type="checkbox"]:checked').each(function () {
-          var_tacNot.push("(" + $(this).parent().next().val() + ")");
+        // 2. TAC2
+        var var_tac2 = [];
+        $('#tac2').find('input[type="checkbox"]:checked').each(function () {
+          var_tac2.push("(" + $(this).parent().next().val() + ")");
         });
-        if (var_tacNot.length !== 0) {
-          var_tacNot = " NOT TAC:( " + var_tacNot.join(' OR ') + " )";
+        if (var_tac2.length !== 0) {
+          var_tac2 = " " + tac2_link + " " + tac2_type + ":( " + var_tac2.join(' OR ') + " )";
+        } else {
+          var_tac2 = "";
         }
-        // 3. TACD
-        var var_tacd = [];
-        $('#tacd_and').find('input[type="checkbox"]:checked').each(function () {
-          var_tacd.push("(" + $(this).parent().next().val() + ")");
+        // 3. TACD1
+        var var_tacd1 = [];
+        $('#tacd1').find('input[type="checkbox"]:checked').each(function () {
+          var_tacd1.push("(" + $(this).parent().next().val() + ")");
         });
-        if (var_tacd.length !== 0) {
-          var_tacd = " TACD:( " + var_tacd.join(' OR ') + " )";
+        if (var_tacd1.length !== 0) {
+          var_tacd1 = " " + tacd1_link + " " + tacd1_type + ":( " + var_tacd1.join(' OR ') + " )";
+        } else {
+          var_tacd1 = "";
         }
-        // 4. TACD NOT
-        var var_tacdNot = [];
-        $('#tacd_not').find('input[type="checkbox"]:checked').each(function () {
-          var_tacdNot.push("(" + $(this).parent().next().val() + ")");
+        // 4. TACD2
+        var var_tacd2 = [];
+        $('#tacd2').find('input[type="checkbox"]:checked').each(function () {
+          var_tacd2.push("(" + $(this).parent().next().val() + ")");
         });
-        if (var_tacdNot.length !== 0) {
-          var_tacdNot = " NOT TACD:( " + var_tacdNot.join(' OR ') + " )";
+        if (var_tacd2.length !== 0) {
+          var_tacd2 = " " + tacd2_link + " " + tacd2_type + ":( " + var_tacd2.join(' OR ') + " )";
+        } else {
+          var_tacd2 = "";
         }
 
-        var search = all_an + " AND ( " + val_tac + var_tacd + var_tacNot + var_tacdNot + " ) ";
+        var search = var_tac1 + var_tac2 + var_tacd1 + var_tacd2;
         console.log(search);
 
-        var url = prefix + encodeURIComponent(search) + suffix;
-        window.open(url, '_blank');
-        // $('#link').attr('href', url);
-        // $('#result').removeAttr('hidden');
+        // window.open(url, '_blank');
+        $('#links').empty();
+        $('#result').removeAttr('hidden');
+        $('#all_an').val().split(/[\n]/).forEach(element => {
+          var all_an = "ALL_AN:(" + element + ")";
+          var url = prefix + encodeURIComponent(all_an + search) + suffix;
+          $('#links').append('<a href=' + url + ' target="_blank" class="generatedLink">' + element);
+        });
+        $('.generatedLink').wrap("<div class='row text-muted'></div>");
+      });
+
+      // Select all
+      $('#flexSwitchCheckDefault1').click(function () {
+        if($(this).prop("checked") === true) {
+          $('#tac1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", true);
+          });
+        } else {
+          $('#tac1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+
+      $('#flexSwitchCheckDefault2').click(function () {
+        if($(this).prop("checked") === true) {
+          $('#tac2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", true);
+          });
+        } else {
+          $('#tac2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+
+      $('#flexSwitchCheckDefault3').click(function () {
+        if($(this).prop("checked") === true) {
+          $('#tacd1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", true);
+          });
+        } else {
+          $('#tacd1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+
+      $('#flexSwitchCheckDefault4').click(function () {
+        if($(this).prop("checked") === true) {
+          $('#tacd2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", true);
+          });
+        } else {
+          $('#tacd2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
       });
     });
   </script>
