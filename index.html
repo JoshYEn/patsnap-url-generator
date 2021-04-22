@@ -67,12 +67,15 @@
 
     <!-- ALL_AN -->
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">[全字段]申请(专利权)人</h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">搜索字段及内容定义</h6>
       <div class="text-muted pt-2">
         <form class="mb-0">
           <div class="form-row media-body mb-0 small lh-125">
             <div class="col-md">
-              <label for="all_an" class="text-center mb-1">ALL_AN (一行一个)</label>
+              <label for="all_an_type" class="text-center mb-1">搜索字段缩写</label>
+              <input class="form-control" id="all_an_type" placeholder="ALL_AN" value="ALL_AN"></input>
+
+              <label for="all_an" class="text-center mb-1 mt-2">搜索内容 (一行一个)</label>
               <!-- <input type="text" class="form-control form-control" id="all_an" value="株式会社東芝"> -->
               <textarea class="form-control" id="all_an" rows="4">株式会社東芝</textarea>
             </div>
@@ -122,6 +125,16 @@
                 <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-allt" value="TAC_ALL" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac1-allt">TAC_ALL</label>
               </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="tac1-aon-int" id="radio-tac1-int">
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-and" value="AND" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-and">AND</label>
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-or" value="OR" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-or">OR</label>
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-not">NOT</label>
+              </div>
+              <hr class="mb-0 mt-2">
             </div>
           </div>
 
@@ -244,6 +257,16 @@
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac2-allt">TAC_ALL</label>
               </div>
 
+              <div class="ms-2 btn-group" role="group" aria-label="tac2-aon-int" id="radio-tac2-int">
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-and" value="AND" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-and">AND</label>
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-or" value="OR" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-or">OR</label>
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
             </div>
           </div>
 
@@ -329,6 +352,16 @@
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-allt">TACD_ALL</label>
               </div>
 
+              <div class="ms-2 btn-group" role="group" aria-label="tacd1-aon-int" id="radio-tacd1-int">
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-and" value="AND" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-and">AND</label>
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-or" value="OR" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-or">OR</label>
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
             </div>
           </div>
 
@@ -451,6 +484,16 @@
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-allt">TACD_ALL</label>
               </div>
 
+              <div class="ms-2 btn-group" role="group" aria-label="tacd2-aon-int" id="radio-tacd2-int">
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-and" value="AND" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-and">AND</label>
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-or" value="OR" autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-or">OR</label>
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
             </div>
           </div>
 
@@ -542,13 +585,19 @@
         var tacd1_type = $("#radio-tacd1 input:radio:checked").val();
         var tacd2_type = $("#radio-tacd2 input:radio:checked").val();
 
+        // internal link
+        var tac1_intl = $("#radio-tac1-int input:radio:checked").val();
+        var tac2_intl = $("#radio-tac2-int input:radio:checked").val();
+        var tacd1_intl = $("#radio-tacd1-int input:radio:checked").val();
+        var tacd2_intl = $("#radio-tacd2-int input:radio:checked").val();
+
         // 1. TAC1
         var var_tac1 = [];
         $('#tac1').find('input[type="checkbox"]:checked').each(function () {
           var_tac1.push("(" + $(this).parent().next().val() + ")");
         });
         if (var_tac1.length !== 0) { // if selected
-          var_tac1 = " " + tac1_link + " " + tac1_type + ":( " + var_tac1.join(' OR ') + " )";
+          var_tac1 = " " + tac1_link + " " + tac1_type + ":( " + var_tac1.join(" " + tac1_intl + " ") + " )";
         } else {
           var_tac1 = "";
         }
@@ -558,7 +607,7 @@
           var_tac2.push("(" + $(this).parent().next().val() + ")");
         });
         if (var_tac2.length !== 0) {
-          var_tac2 = " " + tac2_link + " " + tac2_type + ":( " + var_tac2.join(' OR ') + " )";
+          var_tac2 = " " + tac2_link + " " + tac2_type + ":( " + var_tac2.join(" " + tac2_intl + " ") + " )";
         } else {
           var_tac2 = "";
         }
@@ -568,7 +617,7 @@
           var_tacd1.push("(" + $(this).parent().next().val() + ")");
         });
         if (var_tacd1.length !== 0) {
-          var_tacd1 = " " + tacd1_link + " " + tacd1_type + ":( " + var_tacd1.join(' OR ') + " )";
+          var_tacd1 = " " + tacd1_link + " " + tacd1_type + ":( " + var_tacd1.join(" " + tacd1_intl + " ") + " )";
         } else {
           var_tacd1 = "";
         }
@@ -578,7 +627,7 @@
           var_tacd2.push("(" + $(this).parent().next().val() + ")");
         });
         if (var_tacd2.length !== 0) {
-          var_tacd2 = " " + tacd2_link + " " + tacd2_type + ":( " + var_tacd2.join(' OR ') + " )";
+          var_tacd2 = " " + tacd2_link + " " + tacd2_type + ":( " + var_tacd2.join(" " + tacd2_intl + " ") + " )";
         } else {
           var_tacd2 = "";
         }
@@ -587,10 +636,11 @@
         console.log(search);
 
         // window.open(url, '_blank');
+        var allan_type = $("#all_an_type").val();
         $('#links').empty();
         $('#result').removeAttr('hidden');
         $('#all_an').val().split(/[\n]/).forEach(element => {
-          var all_an = "ALL_AN:(" + element + ")";
+          var all_an = allan_type + ":(" + element + ")";
           var url = prefix + encodeURIComponent(all_an + search) + suffix;
           $('#links').append('<a href=' + url + ' target="_blank" class="generatedLink">' + element);
         });
