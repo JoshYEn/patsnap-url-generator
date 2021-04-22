@@ -645,6 +645,7 @@
           $('#links').append('<a href=' + url + ' target="_blank" class="generatedLink">' + element);
         });
         $('.generatedLink').wrap("<div class='row text-muted'></div>");
+        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
       });
 
       // Select all
