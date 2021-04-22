@@ -652,7 +652,9 @@
       $('#flexSwitchCheckDefault1').click(function () {
         if($(this).prop("checked") === true) {
           $('#tac1').find('input[type="checkbox"]').each(function () {
-            $(this).prop("checked", true);
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
           });
         } else {
           $('#tac1').find('input[type="checkbox"]').each(function () {
@@ -664,7 +666,9 @@
       $('#flexSwitchCheckDefault2').click(function () {
         if($(this).prop("checked") === true) {
           $('#tac2').find('input[type="checkbox"]').each(function () {
-            $(this).prop("checked", true);
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
           });
         } else {
           $('#tac2').find('input[type="checkbox"]').each(function () {
@@ -676,7 +680,9 @@
       $('#flexSwitchCheckDefault3').click(function () {
         if($(this).prop("checked") === true) {
           $('#tacd1').find('input[type="checkbox"]').each(function () {
-            $(this).prop("checked", true);
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
           });
         } else {
           $('#tacd1').find('input[type="checkbox"]').each(function () {
@@ -688,7 +694,9 @@
       $('#flexSwitchCheckDefault4').click(function () {
         if($(this).prop("checked") === true) {
           $('#tacd2').find('input[type="checkbox"]').each(function () {
-            $(this).prop("checked", true);
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
           });
         } else {
           $('#tacd2').find('input[type="checkbox"]').each(function () {
