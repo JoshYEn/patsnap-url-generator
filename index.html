@@ -11,6 +11,7 @@
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -55,17 +56,39 @@
 
 <body class="bg-light">
   <main role="main" class="container">
+
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded shadow-sm">
       <div class="me-3">
         <img src="https://tableau.github.io/webdataconnector/assets/logo.png" alt="" width="48" height="48">
       </div>
-      <div class="lh-100">
+      <div class="lh-100 flex-grow-1">
         <h6 class="mb-2 text-white lh-100">Patsnap 搜索链接生成小工具</h6>
         <small>妍姐快试试～</small>
       </div>
+      <div class="lh-100 me-2">
+        <button type="button" class="btn btn-success submitButton">
+          <i class="bi bi-hammer"></i>
+          生成链接
+        </button>
+      </div>
+      <div class="lh-100 me-2">
+        <button type="button" class="btn btn-outline-light" id="download-data">
+          <i class="bi bi-download"></i>
+          下载配置
+        </button>
+      </div>
+      <div class="lh-100">
+        <form id="formid">
+          <input id='fileid' type='file' hidden />
+          <button type="button" class="btn btn-outline-light" id="restore-data">
+            <i class="bi bi-cloud-upload"></i>
+            上传配置
+          </button>
+        </form>
+      </div>
     </div>
 
-    <!-- ALL_AN -->
+    <!-- BLOCK ALL_AN -->
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">搜索字段及内容定义</h6>
       <div class="text-muted pt-2">
@@ -84,16 +107,17 @@
       </div>
     </div> <!-- ALL_AN -->
 
-    <!-- TAC -->
+    <!-- BLOCK TAC -->
     <div class="row text-muted">
+
+      <!-- BLOCK TAC 1 -->
       <div class="col-md-6">
-        <!-- TAC AND -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
           <div class="row">
             <div class="col-9">
               <!-- <div class="row"> -->
-                <h6 class="mb-0 pt-2 me-2">标题/摘要/权利要求 (TAC) <span style="color: red;">1</span></h6>
-                <!-- <div class="form-check form-switch">
+              <h6 class="mb-0 pt-2 me-2">标题/摘要/权利要求 (TAC) <span style="color: red;">1</span></h6>
+              <!-- <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="flexSwitchALL1">
                   <h6 class="form-check-label mb-0 pt-1" for="flexSwitchALL1"><span style="color: red;">包括</span> 标题/摘要/权利要求 （TAC）</h6>
                 </div> -->
@@ -101,8 +125,8 @@
             </div>
             <div class="col-3 d-flex justify-content-end">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1">
-                <label class="form-check-label" for="flexSwitchCheckDefault1">select all</label>
+                <input class="form-check-input" type="checkbox" id="tac1-select-all">
+                <label class="form-check-label" for="tac1-select-all">select all</label>
               </div>
             </div>
           </div>
@@ -111,7 +135,8 @@
             <div class="col">
               <hr class="my-2">
               <div class="btn-group" role="group" aria-label="tac1-aon" id="radio-tac1-link">
-                <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-and" value="AND" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-and" value="AND" autocomplete="off"
+                  checked>
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac1-and">AND</label>
                 <input type="radio" class="btn-check" name="tac1-aon" id="btn-tac1-or" value="OR" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac1-or">OR</label>
@@ -119,19 +144,24 @@
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac1-not">NOT</label>
               </div>
 
-              <div class="ms-2 btn-group" role="group" aria-label="tac1-tf" id="radio-tac1">
-                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-allf" value="TAC" autocomplete="off" checked>
-                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-allf">TAC</label>
-                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-allt" value="TAC_ALL" autocomplete="off">
-                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-allt">TAC_ALL</label>
+              <div class="ms-2 btn-group" role="group" aria-label="tac1-tf" id="radio-tac1-type">
+                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-tac" value="TAC" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-tac">TAC</label>
+                <input type="radio" class="btn-check" name="tac1-tf" id="btn-tac1-tac_all" value="TAC_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac1-tac_all">TAC_ALL</label>
               </div>
 
               <div class="ms-2 btn-group" role="group" aria-label="tac1-aon-int" id="radio-tac1-int">
-                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-and" value="AND" autocomplete="off">
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-and" value="AND"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-and">AND</label>
-                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-or" value="OR" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-or" value="OR"
+                  autocomplete="off" checked>
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-or">OR</label>
-                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tac1-aon-int" id="btn-tac1-int-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac1-int-not">NOT</label>
               </div>
               <hr class="mb-0 mt-2">
@@ -219,11 +249,11 @@
 
             </div>
           </div> <!-- row -->
-        </div> <!-- TAC AND -->
+        </div> <!-- TAC 1 -->
       </div>
 
+      <!-- BLOCK TAC 2 -->
       <div class="col-md-6">
-        <!-- NOT TAC -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
           <div class="row">
             <div class="col-9">
@@ -231,8 +261,8 @@
             </div>
             <div class="col-3 d-flex justify-content-end">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
-                <label class="form-check-label" for="flexSwitchCheckDefault2">select all</label>
+                <input class="form-check-input" type="checkbox" id="tac2-select-all">
+                <label class="form-check-label" for="tac2-select-all">select all</label>
               </div>
             </div>
           </div>
@@ -242,7 +272,8 @@
               <hr class="my-2">
 
               <div class="btn-group" role="group" aria-label="tac2-aon" id="radio-tac2-link">
-                <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-and" value="AND" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-and" value="AND" autocomplete="off"
+                  checked>
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac2-and">AND</label>
                 <input type="radio" class="btn-check" name="tac2-aon" id="btn-tac2-or" value="OR" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac2-or">OR</label>
@@ -250,19 +281,24 @@
                 <label class="btn btn-sm btn-outline-primary" for="btn-tac2-not">NOT</label>
               </div>
 
-              <div class="ms-2 btn-group" role="group" aria-label="tac2-tf" id="radio-tac2">
-                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-allf" value="TAC" autocomplete="off" checked>
-                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-allf">TAC</label>
-                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-allt" value="TAC_ALL" autocomplete="off">
-                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-allt">TAC_ALL</label>
+              <div class="ms-2 btn-group" role="group" aria-label="tac2-tf" id="radio-tac2-type">
+                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-tac" value="TAC" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-tac">TAC</label>
+                <input type="radio" class="btn-check" name="tac2-tf" id="btn-tac2-tac_all" value="TAC_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tac2-tac_all">TAC_ALL</label>
               </div>
 
               <div class="ms-2 btn-group" role="group" aria-label="tac2-aon-int" id="radio-tac2-int">
-                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-and" value="AND" autocomplete="off">
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-and" value="AND"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-and">AND</label>
-                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-or" value="OR" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-or" value="OR"
+                  autocomplete="off" checked>
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-or">OR</label>
-                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tac2-aon-int" id="btn-tac2-int-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tac2-int-not">NOT</label>
               </div>
 
@@ -311,14 +347,15 @@
 
             </div>
           </div>
-        </div> <!-- NOT TAC -->
-      </div>
+        </div>
+      </div> <!-- TAC 2 -->
     </div> <!-- TAC END -->
 
-    <!-- TACD -->
+    <!-- BLOCK TACD -->
     <div class="row text-muted">
+
+      <!-- BLOCK TACD 1 -->
       <div class="col-md-6">
-        <!-- TACD AND -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
           <div class="row">
             <div class="col-9">
@@ -326,8 +363,8 @@
             </div>
             <div class="col-3 d-flex justify-content-end">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault3">
-                <label class="form-check-label" for="flexSwitchCheckDefault3">select all</label>
+                <input class="form-check-input" type="checkbox" id="tacd1-select-all">
+                <label class="form-check-label" for="tacd1-select-all">select all</label>
               </div>
             </div>
           </div>
@@ -337,27 +374,34 @@
               <hr class="my-2">
 
               <div class="btn-group" role="group" aria-label="tacd1-aon" id="radio-tacd1-link">
-                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-and" value="AND" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-and" value="AND" autocomplete="off"
+                  checked>
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-and">AND</label>
                 <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-or" value="OR" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-or">OR</label>
-                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd1-aon" id="btn-tacd1-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-not">NOT</label>
               </div>
 
-              <div class="ms-2 btn-group" role="group" aria-label="tacd1-tf" id="radio-tacd1">
-                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-allf" value="TACD" autocomplete="off" checked>
-                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-allf">TACD</label>
-                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-allt" value="TACD_ALL" autocomplete="off">
-                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-allt">TACD_ALL</label>
+              <div class="ms-2 btn-group" role="group" aria-label="tacd1-tf" id="radio-tacd1-type">
+                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-tacd" value="TACD"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-tacd">TACD</label>
+                <input type="radio" class="btn-check" name="tacd1-tf" id="btn-tacd1-tacd_all" value="TACD_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd1-tacd_all">TACD_ALL</label>
               </div>
 
               <div class="ms-2 btn-group" role="group" aria-label="tacd1-aon-int" id="radio-tacd1-int">
-                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-and" value="AND" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-and" value="AND"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-and">AND</label>
-                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-or" value="OR" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-or" value="OR"
+                  autocomplete="off" checked>
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-or">OR</label>
-                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd1-aon-int" id="btn-tacd1-int-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd1-int-not">NOT</label>
               </div>
 
@@ -446,11 +490,11 @@
 
             </div>
           </div>
-        </div> <!-- TAC -->
-      </div>
+        </div>
+      </div> <!-- TACD 1 -->
 
+      <!-- BLOCK TACD 2 -->
       <div class="col-md-6">
-        <!-- NOT TACD -->
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
           <div class="row">
             <div class="col-9">
@@ -458,8 +502,8 @@
             </div>
             <div class="col-3 d-flex justify-content-end">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault4">
-                <label class="form-check-label" for="flexSwitchCheckDefault4">select all</label>
+                <input class="form-check-input" type="checkbox" id="tacd2-select-all">
+                <label class="form-check-label" for="tacd2-select-all">select all</label>
               </div>
             </div>
           </div>
@@ -469,27 +513,34 @@
               <hr class="my-2">
 
               <div class="btn-group" role="group" aria-label="tacd2-aon" id="radio-tacd2-link">
-                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-and" value="AND" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-and" value="AND" autocomplete="off"
+                  checked>
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-and">AND</label>
                 <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-or" value="OR" autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-or">OR</label>
-                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd2-aon" id="btn-tacd2-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-not">NOT</label>
               </div>
 
-              <div class="ms-2 btn-group" role="group" aria-label="tacd2-tf" id="radio-tacd2">
-                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-allf" value="TACD" autocomplete="off" checked>
-                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-allf">TACD</label>
-                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-allt" value="TACD_ALL" autocomplete="off">
-                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-allt">TACD_ALL</label>
+              <div class="ms-2 btn-group" role="group" aria-label="tacd2-tf" id="radio-tacd2-type">
+                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-tacd" value="TACD"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-tacd">TACD</label>
+                <input type="radio" class="btn-check" name="tacd2-tf" id="btn-tacd2-tacd_all" value="TACD_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-tacd2-tacd_all">TACD_ALL</label>
               </div>
 
               <div class="ms-2 btn-group" role="group" aria-label="tacd2-aon-int" id="radio-tacd2-int">
-                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-and" value="AND" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-and" value="AND"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-and">AND</label>
-                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-or" value="OR" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-or" value="OR"
+                  autocomplete="off" checked>
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-or">OR</label>
-                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-not" value="NOT" autocomplete="off">
+                <input type="radio" class="btn-check" name="tacd2-aon-int" id="btn-tacd2-int-not" value="NOT"
+                  autocomplete="off">
                 <label class="btn btn-sm btn-outline-secondary" for="btn-tacd2-int-not">NOT</label>
               </div>
 
@@ -539,20 +590,530 @@
 
             </div>
           </div>
-        </div> <!-- NOT TACD -->
-      </div>
+        </div>
+      </div> <!-- TACD 2 -->
+
     </div> <!-- TACD END -->
 
+
+    <!-- BLOCK TA -->
+    <div class="row text-muted">
+
+      <!-- BLOCK TA 1 -->
+      <div class="col-md-6">
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题/摘要 (TA) <span style="color: red;">1</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ta1-select-all">
+                <label class="form-check-label" for="ta1-select-all">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="ta1-aon" id="radio-ta1-link">
+                <input type="radio" class="btn-check" name="ta1-aon" id="btn-ta1-and" value="AND" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta1-and">AND</label>
+                <input type="radio" class="btn-check" name="ta1-aon" id="btn-ta1-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta1-or">OR</label>
+                <input type="radio" class="btn-check" name="ta1-aon" id="btn-ta1-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta1-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ta1-tf" id="radio-ta1-type">
+                <input type="radio" class="btn-check" name="ta1-tf" id="btn-ta1-ta" value="TA" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta1-ta">TA</label>
+                <input type="radio" class="btn-check" name="ta1-tf" id="btn-ta1-ta_all" value="TA_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta1-ta_all">TA_ALL</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ta1-aon-int" id="radio-ta1-int">
+                <input type="radio" class="btn-check" name="ta1-aon-int" id="btn-ta1-int-and" value="AND"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta1-int-and">AND</label>
+                <input type="radio" class="btn-check" name="ta1-aon-int" id="btn-ta1-int-or" value="OR"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta1-int-or">OR</label>
+                <input type="radio" class="btn-check" name="ta1-aon-int" id="btn-ta1-int-not" value="NOT"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta1-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
+            </div>
+          </div>
+
+          <div class="row text-muted pt-2" id="ta1">
+            <div class="col-md-6">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="centrif* OR 离心" value="centrif* OR 离心">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="uranium OR 铀"
+                  value="uranium OR 铀">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="转子 OR rotor"
+                  value="转子 OR rotor">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="阻尼 OR damper"
+                  value="阻尼 OR damper">
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="气体 OR gas"
+                  value="气体 OR gas">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="enrich* OR 富集" value="enrich* OR 富集">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="轴承 OR bear*"
+                  value="轴承 OR bear*">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="自定义"
+                  value="">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- TA 1 -->
+
+      <!-- BLOCK TA 2 -->
+      <div class="col-md-6">
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题/摘要 (TA) <span style="color: red;">2</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ta2-select-all">
+                <label class="form-check-label" for="ta2-select-all">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="ta2-aon" id="radio-ta2-link">
+                <input type="radio" class="btn-check" name="ta2-aon" id="btn-ta2-and" value="AND" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta2-and">AND</label>
+                <input type="radio" class="btn-check" name="ta2-aon" id="btn-ta2-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta2-or">OR</label>
+                <input type="radio" class="btn-check" name="ta2-aon" id="btn-ta2-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta2-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ta2-tf" id="radio-ta2-type">
+                <input type="radio" class="btn-check" name="ta2-tf" id="btn-ta2-ta" value="TA" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta2-ta">TA</label>
+                <input type="radio" class="btn-check" name="ta2-tf" id="btn-ta2-ta_all" value="TA_ALL" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ta2-ta_all">TA_ALL</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ta2-aon-int" id="radio-ta2-int">
+                <input type="radio" class="btn-check" name="ta2-aon-int" id="btn-ta2-int-and" value="AND"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta2-int-and">AND</label>
+                <input type="radio" class="btn-check" name="ta2-aon-int" id="btn-ta2-int-or" value="OR"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta2-int-or">OR</label>
+                <input type="radio" class="btn-check" name="ta2-aon-int" id="btn-ta2-int-not" value="NOT"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ta2-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
+            </div>
+          </div>
+
+
+          <div class="row text-muted pt-2" id="ta2">
+            <div class="col-md-12">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="激光 OR laser"
+                  value="激光 OR laser">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="反应堆 OR nuclear reactor" value="反应堆 OR nuclear reactor">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="后处理 OR reprocessing OR Spent fuel" value="后处理 OR reprocessing OR Spent fuel">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="自定义"
+                  value="">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- TA 2 -->
+
+    </div> <!-- TA END -->
+
+
+    <!-- BLOCK TTL -->
+    <div class="row text-muted">
+
+      <!-- BLOCK TTL 1 -->
+      <div class="col-md-6">
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题 (TTL) <span style="color: red;">1</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ttl1-select-all">
+                <label class="form-check-label" for="ttl1-select-all">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="ttl1-aon" id="radio-ttl1-link">
+                <input type="radio" class="btn-check" name="ttl1-aon" id="btn-ttl1-and" value="AND" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl1-and">AND</label>
+                <input type="radio" class="btn-check" name="ttl1-aon" id="btn-ttl1-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl1-or">OR</label>
+                <input type="radio" class="btn-check" name="ttl1-aon" id="btn-ttl1-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl1-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ttl1-tf" id="radio-ttl1-type">
+                <input type="radio" class="btn-check" name="ttl1-tf" id="btn-ttl1-ttl" value="TTL" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl1-ttl">TTL</label>
+                <input type="radio" class="btn-check" name="ttl1-tf" id="btn-ttl1-ttl_all" value="TTL_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl1-ttl_all">TTL_ALL</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ttl1-aon-int" id="radio-ttl1-int">
+                <input type="radio" class="btn-check" name="ttl1-aon-int" id="btn-ttl1-int-and" value="AND"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl1-int-and">AND</label>
+                <input type="radio" class="btn-check" name="ttl1-aon-int" id="btn-ttl1-int-or" value="OR"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl1-int-or">OR</label>
+                <input type="radio" class="btn-check" name="ttl1-aon-int" id="btn-ttl1-int-not" value="NOT"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl1-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
+            </div>
+          </div>
+
+          <div class="row text-muted pt-2" id="ttl1">
+            <div class="col-md-6">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="centrif* OR 离心" value="centrif* OR 离心">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="uranium OR 铀"
+                  value="uranium OR 铀">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="转子 OR rotor"
+                  value="转子 OR rotor">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="阻尼 OR damper"
+                  value="阻尼 OR damper">
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="气体 OR gas"
+                  value="气体 OR gas">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="enrich* OR 富集" value="enrich* OR 富集">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="轴承 OR bear*"
+                  value="轴承 OR bear*">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="自定义"
+                  value="">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- TTL 1 -->
+
+      <!-- BLOCK TTL 2 -->
+      <div class="col-md-6">
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+          <div class="row">
+            <div class="col-9">
+              <h6 class="mb-0 pt-1">标题 (TTL) <span style="color: red;">2</span></h6>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ttl2-select-all">
+                <label class="form-check-label" for="ttl2-select-all">select all</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <hr class="my-2">
+
+              <div class="btn-group" role="group" aria-label="ttl2-aon" id="radio-ttl2-link">
+                <input type="radio" class="btn-check" name="ttl2-aon" id="btn-ttl2-and" value="AND" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl2-and">AND</label>
+                <input type="radio" class="btn-check" name="ttl2-aon" id="btn-ttl2-or" value="OR" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl2-or">OR</label>
+                <input type="radio" class="btn-check" name="ttl2-aon" id="btn-ttl2-not" value="NOT" autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl2-not">NOT</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ttl2-tf" id="radio-ttl2-type">
+                <input type="radio" class="btn-check" name="ttl2-tf" id="btn-ttl2-ttl" value="TTL" autocomplete="off"
+                  checked>
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl2-ttl">TTL</label>
+                <input type="radio" class="btn-check" name="ttl2-tf" id="btn-ttl2-ttl_all" value="TTL_ALL"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-primary" for="btn-ttl2-ttl_all">TTL_ALL</label>
+              </div>
+
+              <div class="ms-2 btn-group" role="group" aria-label="ttl2-aon-int" id="radio-ttl2-int">
+                <input type="radio" class="btn-check" name="ttl2-aon-int" id="btn-ttl2-int-and" value="AND"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl2-int-and">AND</label>
+                <input type="radio" class="btn-check" name="ttl2-aon-int" id="btn-ttl2-int-or" value="OR"
+                  autocomplete="off" checked>
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl2-int-or">OR</label>
+                <input type="radio" class="btn-check" name="ttl2-aon-int" id="btn-ttl2-int-not" value="NOT"
+                  autocomplete="off">
+                <label class="btn btn-sm btn-outline-secondary" for="btn-ttl2-int-not">NOT</label>
+              </div>
+
+              <hr class="mb-0 mt-2">
+            </div>
+          </div>
+
+
+          <div class="row text-muted pt-2" id="ttl2">
+            <div class="col-md-12">
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="激光 OR laser"
+                  value="激光 OR laser">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="反应堆 OR nuclear reactor" value="反应堆 OR nuclear reactor">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="后处理 OR reprocessing OR Spent fuel" value="后处理 OR reprocessing OR Spent fuel">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value=""
+                    aria-label="Checkbox for following text input">
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="自定义"
+                  value="">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- TA 2 -->
+
+    </div> <!-- TA END -->
+
+    <!-- BLOCK GENERAGE LINK -->
     <div class="row justify-content-center mb-3">
       <div class="text-center">
-        <button type="button" id="submitButton" class="btn btn-success">生成链接</button>
+        <button type="button" class="btn btn-success submitButton">
+          <i class="bi bi-hammer"></i>
+          生成链接
+        </button>
         <div id="errorMsg"></div>
       </div>
     </div>
 
+    <!-- BLOCK  -->
     <div class="row justify-content-center mb-3" id="result" hidden>
-      <div class="text-center col-md-12">
-        <div class="alert alert-primary mb-0 shadow-sm" role="alert" id="links">
+      <div class="text-center col-md-12 alert alert-primary mb-0 shadow-sm" role="alert">
+        <div class="row mb-3">
+          <div class="col">
+            <button type="button" class="btn btn-secondary open-all">打开所有链接</button>
+          </div>
+        </div>
+        <div class="row mx-3 mb-3">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">搜索关键词</th>
+                <th scope="col">生成结果</th>
+              </tr>
+            </thead>
+            <tbody id="links"></tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-secondary open-all">打开所有链接</button>
+          </div>
         </div>
       </div>
     </div>
@@ -570,87 +1131,214 @@
       var prefix = "https://analytics.zhihuiya.com/search/result/tablelist/1?sort=desc&limit=100&q=";
       var suffix = "&_type=query&redirect=%2Fsearch%2Finput%23%2Fsimple";
 
-      // if submit button is clicked
-      $('#submitButton').click(function () {
-
+      function readFromPage() {
         // link
         var tac1_link = $("#radio-tac1-link input:radio:checked").val();
         var tac2_link = $("#radio-tac2-link input:radio:checked").val();
         var tacd1_link = $("#radio-tacd1-link input:radio:checked").val();
         var tacd2_link = $("#radio-tacd2-link input:radio:checked").val();
+        var ta1_link = $("#radio-ta1-link input:radio:checked").val();
+        var ta2_link = $("#radio-ta2-link input:radio:checked").val();
+        var ttl1_link = $("#radio-ttl1-link input:radio:checked").val();
+        var ttl2_link = $("#radio-ttl2-link input:radio:checked").val();
 
         // type
-        var tac1_type = $("#radio-tac1 input:radio:checked").val();
-        var tac2_type = $("#radio-tac2 input:radio:checked").val();
-        var tacd1_type = $("#radio-tacd1 input:radio:checked").val();
-        var tacd2_type = $("#radio-tacd2 input:radio:checked").val();
+        var tac1_type = $("#radio-tac1-type input:radio:checked").val();
+        var tac2_type = $("#radio-tac2-type input:radio:checked").val();
+        var tacd1_type = $("#radio-tacd1-type input:radio:checked").val();
+        var tacd2_type = $("#radio-tacd2-type input:radio:checked").val();
+        var ta1_type = $("#radio-ta1-type input:radio:checked").val();
+        var ta2_type = $("#radio-ta2-type input:radio:checked").val();
+        var ttl1_type = $("#radio-ttl1-type input:radio:checked").val();
+        var ttl2_type = $("#radio-ttl2-type input:radio:checked").val();
 
         // internal link
         var tac1_intl = $("#radio-tac1-int input:radio:checked").val();
         var tac2_intl = $("#radio-tac2-int input:radio:checked").val();
         var tacd1_intl = $("#radio-tacd1-int input:radio:checked").val();
         var tacd2_intl = $("#radio-tacd2-int input:radio:checked").val();
+        var ta1_intl = $("#radio-ta1-int input:radio:checked").val();
+        var ta2_intl = $("#radio-ta2-int input:radio:checked").val();
+        var ttl1_intl = $("#radio-ttl1-int input:radio:checked").val();
+        var ttl2_intl = $("#radio-ttl2-int input:radio:checked").val();
+
+        // 1. TAC1
+        var var_tac1 = {};
+        $('#tac1').find('input[type="checkbox"]:checked').each(function (index) {
+          var_tac1[index] = $(this).parent().next().val();
+        });
+        // 2. TAC2
+        var var_tac2 = {};
+        $('#tac2').find('input[type="checkbox"]:checked').each(function (index) {
+          var_tac2[index] = $(this).parent().next().val();
+        });
+        // 3. TACD1
+        var var_tacd1 = {};
+        $('#tacd1').find('input[type="checkbox"]:checked').each(function (index) {
+          var_tacd1[index] = $(this).parent().next().val();
+        });
+        // 4. TACD2
+        var var_tacd2 = {};
+        $('#tacd2').find('input[type="checkbox"]:checked').each(function (index) {
+          var_tacd2[index] = $(this).parent().next().val();
+        });
+        // 5. TA1
+        var var_ta1 = {};
+        $('#ta1').find('input[type="checkbox"]:checked').each(function (index) {
+          var_ta1[index] = $(this).parent().next().val();
+        });
+        // 6. TA2
+        var var_ta2 = {};
+        $('#ta2').find('input[type="checkbox"]:checked').each(function (index) {
+          var_ta2[index] = $(this).parent().next().val();
+        });
+        // 7. TTL1
+        var var_ttl1 = {};
+        $('#ttl1').find('input[type="checkbox"]:checked').each(function (index) {
+          var_ttl1[index] = $(this).parent().next().val();
+        });
+        // 8. TTL2
+        var var_ttl2 = {};
+        $('#ttl2').find('input[type="checkbox"]:checked').each(function (index) {
+          var_ttl2[index] = $(this).parent().next().val();
+        });
+
+        var data = {
+          tac1_link: tac1_link,
+          tac2_link: tac2_link,
+          tacd1_link: tacd1_link,
+          tacd2_link: tacd2_link,
+          ta1_link: ta1_link,
+          ta2_link: ta2_link,
+          ttl1_link: ttl1_link,
+          ttl2_link: ttl2_link,
+          tac1_type: tac1_type,
+          tac2_type: tac2_type,
+          tacd1_type: tacd1_type,
+          tacd2_type: tacd2_type,
+          ta1_type: ta1_type,
+          ta2_type: ta2_type,
+          ttl1_type: ttl1_type,
+          ttl2_type: ttl2_type,
+          tac1_intl: tac1_intl,
+          tac2_intl: tac2_intl,
+          tacd1_intl: tacd1_intl,
+          tacd2_intl: tacd2_intl,
+          ta1_intl: ta1_intl,
+          ta2_intl: ta2_intl,
+          ttl1_intl: ttl1_intl,
+          ttl2_intl: ttl2_intl,
+
+          var_tac1: var_tac1,
+          var_tac2: var_tac2,
+          var_tacd1: var_tacd1,
+          var_tacd2: var_tacd2,
+          var_ta1: var_ta1,
+          var_ta2: var_ta2,
+          var_ttl1: var_ttl1,
+          var_ttl2: var_ttl2
+        };
+
+        // console.log(data['var_tac1']);
+        // console.log(Object.keys(data).length);
+
+        return data;
+      }
+
+
+      // if submit button is clicked
+      $('.submitButton').click(function () {
+
+        var data = readFromPage();
+
+        function mapAndJoin(obj, join_value) {
+          var arr = [];
+          $.each(obj, function(key, value){
+            arr.push(value);
+          });
+          return arr.join(" ) " + join_value + " ( ");
+        }
 
         // 1. TAC1
         var var_tac1 = [];
-        $('#tac1').find('input[type="checkbox"]:checked').each(function () {
-          var_tac1.push("(" + $(this).parent().next().val() + ")");
-        });
-        if (var_tac1.length !== 0) { // if selected
-          var_tac1 = " " + tac1_link + " " + tac1_type + ":( " + var_tac1.join(" " + tac1_intl + " ") + " )";
+        if (Object.keys(data['var_tac1']).length !== 0) {
+          var_tac1 = " " + data['tac1_link'] + " " + data['tac1_type'] + ":( ( " + mapAndJoin(data['var_tac1'], data['tac1_intl']) + " ) )";
         } else {
           var_tac1 = "";
         }
         // 2. TAC2
         var var_tac2 = [];
-        $('#tac2').find('input[type="checkbox"]:checked').each(function () {
-          var_tac2.push("(" + $(this).parent().next().val() + ")");
-        });
-        if (var_tac2.length !== 0) {
-          var_tac2 = " " + tac2_link + " " + tac2_type + ":( " + var_tac2.join(" " + tac2_intl + " ") + " )";
+        if (Object.keys(data['var_tac2']).length !== 0) {
+          var_tac2 = " " + data['tac2_link'] + " " + data['tac2_type'] + ":( ( " + mapAndJoin(data['var_tac2'], data['tac2_intl']) + " ) )";
         } else {
           var_tac2 = "";
         }
         // 3. TACD1
         var var_tacd1 = [];
-        $('#tacd1').find('input[type="checkbox"]:checked').each(function () {
-          var_tacd1.push("(" + $(this).parent().next().val() + ")");
-        });
-        if (var_tacd1.length !== 0) {
-          var_tacd1 = " " + tacd1_link + " " + tacd1_type + ":( " + var_tacd1.join(" " + tacd1_intl + " ") + " )";
+        if (Object.keys(data['var_tacd1']).length !== 0) {
+          var_tacd1 = " " + data['tacd1_link'] + " " + data['tacd1_type'] + ":( ( " + mapAndJoin(data['var_tacd1'], data['tacd1_intl']) + " ) )";
         } else {
           var_tacd1 = "";
         }
         // 4. TACD2
         var var_tacd2 = [];
-        $('#tacd2').find('input[type="checkbox"]:checked').each(function () {
-          var_tacd2.push("(" + $(this).parent().next().val() + ")");
-        });
-        if (var_tacd2.length !== 0) {
-          var_tacd2 = " " + tacd2_link + " " + tacd2_type + ":( " + var_tacd2.join(" " + tacd2_intl + " ") + " )";
+        if (Object.keys(data['var_tacd2']).length !== 0) {
+          var_tacd2 = " " + data['tacd2_link'] + " " + data['tacd2_type'] + ":( ( " + mapAndJoin(data['var_tacd2'], data['tacd2_intl']) + " ) )";
         } else {
           var_tacd2 = "";
         }
+        // 5. TA1
+        var var_ta1 = [];
+        if (Object.keys(data['var_ta1']).length !== 0) {
+          var_ta1 = " " + data['ta1_link'] + " " + data['ta1_type'] + ":( ( " + mapAndJoin(data['var_ta1'], data['ta1_intl']) + " ) )";
+        } else {
+          var_ta1 = "";
+        }
+        // 6. TA2
+        var var_ta2 = [];
+        if (Object.keys(data['var_ta2']).length !== 0) {
+          var_ta2 = " " + data['ta2_link'] + " " + data['ta2_type'] + ":( ( " + mapAndJoin(data['var_ta2'], data['ta2_intl']) + " ) )";
+        } else {
+          var_ta2 = "";
+        }
+        // 7. TTL1
+        var var_ttl1 = [];
+        if (Object.keys(data['var_ttl1']).length !== 0) {
+          var_ttl1 = " " + data['ttl1_link'] + " " + data['ttl1_type'] + ":( ( " + mapAndJoin(data['var_ttl1'], data['ttl1_intl']) + " ) )";
+        } else {
+          var_ttl1 = "";
+        }
+        // 8. TTL2
+        var var_ttl2 = [];
+        if (Object.keys(data['var_ttl2']).length !== 0) {
+          var_ttl2 = " " + data['ttl2_link'] + " " + data['ttl2_type'] + ":( ( " + mapAndJoin(data['var_ttl2'], data['ttl2_intl']) + " ) )";
+        } else {
+          var_ttl2 = "";
+        }
 
-        var search = var_tac1 + var_tac2 + var_tacd1 + var_tacd2;
-        console.log(search);
 
-        // window.open(url, '_blank');
+        // Combine Link
+        var search = var_tac1 + var_tac2 + var_tacd1 + var_tacd2 + var_ta1 + var_ta2 + var_ttl1 + var_ttl2;
+        // console.log(search);
+
         var allan_type = $("#all_an_type").val();
         $('#links').empty();
         $('#result').removeAttr('hidden');
-        $('#all_an').val().split(/[\n]/).forEach(element => {
+        $('#all_an').val().split(/[\n]/).forEach((element, index) => {
           var all_an = allan_type + ":(" + element + ")";
           var url = prefix + encodeURIComponent(all_an + search) + suffix;
-          $('#links').append('<a href=' + url + ' target="_blank" class="generatedLink">' + element);
+          var html = '<tr><th scope="row">' + (index + 1) + '</th><td><a href=' + url + ' target="_blank" class="generatedLink">' + element + '</a></td>';
+          html += '<td>' + all_an + search + '</td>';
+          html += '</tr>';
+          $('#links').append(html);
         });
         $('.generatedLink').wrap("<div class='row text-muted'></div>");
         $("html, body").animate({ scrollTop: $(document).height() }, 1000);
       });
 
       // Select all
-      $('#flexSwitchCheckDefault1').click(function () {
-        if($(this).prop("checked") === true) {
+      $('#tac1-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
           $('#tac1').find('input[type="checkbox"]').each(function () {
             if ($(this).parent().next().val() !== "") {
               $(this).prop("checked", true);
@@ -662,9 +1350,8 @@
           });
         }
       });
-
-      $('#flexSwitchCheckDefault2').click(function () {
-        if($(this).prop("checked") === true) {
+      $('#tac2-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
           $('#tac2').find('input[type="checkbox"]').each(function () {
             if ($(this).parent().next().val() !== "") {
               $(this).prop("checked", true);
@@ -676,9 +1363,8 @@
           });
         }
       });
-
-      $('#flexSwitchCheckDefault3').click(function () {
-        if($(this).prop("checked") === true) {
+      $('#tacd1-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
           $('#tacd1').find('input[type="checkbox"]').each(function () {
             if ($(this).parent().next().val() !== "") {
               $(this).prop("checked", true);
@@ -690,9 +1376,8 @@
           });
         }
       });
-
-      $('#flexSwitchCheckDefault4').click(function () {
-        if($(this).prop("checked") === true) {
+      $('#tacd2-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
           $('#tacd2').find('input[type="checkbox"]').each(function () {
             if ($(this).parent().next().val() !== "") {
               $(this).prop("checked", true);
@@ -704,6 +1389,215 @@
           });
         }
       });
+      $('#ta1-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
+          $('#ta1').find('input[type="checkbox"]').each(function () {
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
+          });
+        } else {
+          $('#ta1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+      $('#ta2-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
+          $('#ta2').find('input[type="checkbox"]').each(function () {
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
+          });
+        } else {
+          $('#ta2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+      $('#ttl1-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
+          $('#ttl1').find('input[type="checkbox"]').each(function () {
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
+          });
+        } else {
+          $('#ttl1').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+      $('#ttl2-select-all').click(function () {
+        if ($(this).prop("checked") === true) {
+          $('#ttl2').find('input[type="checkbox"]').each(function () {
+            if ($(this).parent().next().val() !== "") {
+              $(this).prop("checked", true);
+            }
+          });
+        } else {
+          $('#ttl2').find('input[type="checkbox"]').each(function () {
+            $(this).prop("checked", false);
+          });
+        }
+      });
+
+      // -
+      $('.open-all').click(function () {
+        $('a').each(function () {
+          window.open($(this).attr('href'), '_blank');
+        });
+      });
+
+      // -
+      $('#download-data').click(() => {
+        var data = readFromPage();
+        $("<a />", {
+          "download": "data.json",
+          "href": "data:application/json," + encodeURIComponent(JSON.stringify(data))
+        }).appendTo("body")
+          .click(function () {
+            $(this).remove()
+          })[0].click();
+      });
+
+      // Upload file when button clicked
+      $('#restore-data').click(() => {
+        $('#fileid').click();
+      });
+
+      // Restore Data from JSON
+      function restoreData(data) {
+        console.log('文件读取正确，正在恢复...');
+
+        // link
+        $('#btn-tac1-' + data.tac1_link.toLowerCase()).prop("checked", true);
+        $('#btn-tac2-' + data.tac2_link.toLowerCase()).prop("checked", true);
+        $('#btn-tacd1-' + data.tacd1_link.toLowerCase()).prop("checked", true);
+        $('#btn-tacd2-' + data.tacd2_link.toLowerCase()).prop("checked", true);
+        $('#btn-ta1-' + data.ta1_link.toLowerCase()).prop("checked", true);
+        $('#btn-ta2-' + data.ta2_link.toLowerCase()).prop("checked", true);
+        $('#btn-ttl1-' + data.ttl1_link.toLowerCase()).prop("checked", true);
+        $('#btn-ttl2-' + data.ttl2_link.toLowerCase()).prop("checked", true);
+
+        // type
+        $('#btn-tac1-' + data.tac1_type.toLowerCase()).prop("checked", true);
+        $('#btn-tac2-' + data.tac2_type.toLowerCase()).prop("checked", true);
+        $('#btn-tacd1-' + data.tacd1_type.toLowerCase()).prop("checked", true);
+        $('#btn-tacd2-' + data.tacd2_type.toLowerCase()).prop("checked", true);
+        $('#btn-ta1-' + data.ta1_type.toLowerCase()).prop("checked", true);
+        $('#btn-ta2-' + data.ta2_type.toLowerCase()).prop("checked", true);
+        $('#btn-ttl1-' + data.ttl1_type.toLowerCase()).prop("checked", true);
+        $('#btn-ttl2-' + data.ttl2_type.toLowerCase()).prop("checked", true);
+
+        // internal link
+        $('#btn-tac1-int-' + data.tac1_intl.toLowerCase()).prop("checked", true);
+        $('#btn-tac2-int-' + data.tac2_intl.toLowerCase()).prop("checked", true);
+        $('#btn-tacd1-int-' + data.tacd1_intl.toLowerCase()).prop("checked", true);
+        $('#btn-tacd2-int-' + data.tacd2_intl.toLowerCase()).prop("checked", true);
+        $('#btn-ta1-int-' + data.ta1_intl.toLowerCase()).prop("checked", true);
+        $('#btn-ta2-int-' + data.ta2_intl.toLowerCase()).prop("checked", true);
+        $('#btn-ttl1-int-' + data.ttl1_intl.toLowerCase()).prop("checked", true);
+        $('#btn-ttl2-int-' + data.ttl2_intl.toLowerCase()).prop("checked", true);
+
+        // 1. TAC1
+        $('#tac1').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_tac1.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_tac1[index]);
+          } else {
+            return;
+          }
+        });
+        // 2. TAC2
+        $('#tac2').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_tac2.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_tac2[index]);
+          } else {
+            return;
+          }
+        });
+        // 3. TACD1
+        $('#tacd1').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_tacd1.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_tacd1[index]);
+          } else {
+            return;
+          }
+        });
+        // 4. TACD2
+        $('#tacd2').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_tacd2.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_tacd2[index]);
+          } else {
+            return;
+          }
+        });
+        // 5. TA1
+        $('#ta1').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_ta1.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_ta1[index]);
+          } else {
+            return;
+          }
+        });
+        // 6. TA2
+        $('#ta2').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_ta2.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_ta2[index]);
+          } else {
+            return;
+          }
+        });
+        // 7. TTL1
+        $('#ttl1').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_ttl1.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_ttl1[index]);
+          } else {
+            return;
+          }
+        });
+        // 8. TTL2
+        $('#ttl2').find('input[type="checkbox"]').each(function (index) {
+          if (data.var_ttl2.hasOwnProperty(index)) {
+            $(this).prop('checked', true);
+            $(this).parent().next().val(data.var_ttl2[index]);
+          } else {
+            return;
+          }
+        });
+      }
+
+      // When uploaded file changed
+      function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function onReaderLoad(event) {
+        console.log(event.target.result);
+        var obj = JSON.parse(event.target.result);
+        if (Object.keys(obj).length === 32) {
+          restoreData(obj);
+        } else {
+          alert_data();
+        }
+      }
+
+      function alert_data() {
+        alert('读取文件错误！');
+      }
+
+      $('#fileid').change('change', onChange);
+
+      // -
     });
   </script>
 </body>
